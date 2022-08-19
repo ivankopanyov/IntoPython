@@ -18,10 +18,8 @@ def get_multyply_list(value):
     value = try_to_int(value)
     if value == None:
         return None
-    if value == 0:
-        return [0]
-    if value == 1:
-        return [1]
+    if value in range(-1, 2):
+        return [abs(value)]
     return list(map(calc_factorial, range(1, abs(value) + 1)))
 
 print('Вычисление факториалов всех чисел в диапазоне от 1 до указанного числа')
