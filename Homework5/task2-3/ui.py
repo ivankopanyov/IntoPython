@@ -18,6 +18,11 @@ class UI(ABC):
     def output(self, message: str):
         pass
 
+    # Функция вывода игрового поля
+    @abstractmethod
+    def output_field(self, values: list):
+        pass
+
 # Имплементация абстракции ввода-вывода информации для пользователя через консоль
 class ConsoleUI(UI):
 
@@ -47,3 +52,23 @@ class ConsoleUI(UI):
     # Функция вывода сообщения пользователю в консоль
     def output(self, message: str):
         print(message)
+        
+    # Функция вывода игрового поля для игры в крестики-нолики
+    def output_field(self, values: list):
+        numbers = '¹²³⁴⁵⁶⁷⁸⁹'
+        result = f"┌{'┬'.join('────' for _ in range(3))}┐\n"
+
+        for i in range(3):
+            line = '│'
+            for j in range(3):
+                num = i * 3 + j
+                line += f'{numbers[num]} {values[num]} │'
+                if j == 2:
+                    line += '\n'
+            if i < 2:
+                line += f"├{'┼'.join('────' for _ in range(3))}┤\n"
+            result += line
+
+        result += f"└{'┴'.join('────' for _ in range(3))}┘"
+
+        print(result)
