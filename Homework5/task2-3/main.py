@@ -10,7 +10,7 @@ def get_game(ui: UI) -> Game:
 
     if game_number == 0:
         game = Candies(CandiesPlayer(names[0], ui), CandiesPlayer(names[1], ui) \
-            if vs_player else CandiesBot(names[1], ui), ui, 5, 100)
+            if vs_player else CandiesBot(names[1], ui), ui, 28, 2021)
     elif game_number == 1:
         game = TicTacToe(TicTacToePlayer(names[0], ui), TicTacToePlayer(names[1], ui) \
             if vs_player else TicTacToeBot(names[1], ui), ui)
