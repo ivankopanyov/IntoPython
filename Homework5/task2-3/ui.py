@@ -22,6 +22,12 @@ class UI(ABC):
     @abstractmethod
     def output_field(self, values: list):
         pass
+    
+    # Функция вывода меню
+    # Возвращает индекс выбранного пункта
+    @abstractmethod
+    def output_menu(self, menu_items: list) -> int:
+        pass
 
 # Имплементация абстракции ввода-вывода информации для пользователя через консоль
 class ConsoleUI(UI):
@@ -72,3 +78,10 @@ class ConsoleUI(UI):
         result += f"└{'┴'.join('────' for _ in range(3))}┘"
 
         print(result)
+
+    # Функция вывода меню в консоль
+    # Возвращает индекс выбранного пункта
+    def output_menu(self, menu_items: list) -> int:
+        for i in range(len(menu_items)):
+            print(f'{i + 1} - {menu_items[i]}')
+        return self.input_number('Укажите пункт меню: ', 1, len(menu_items)) - 1
